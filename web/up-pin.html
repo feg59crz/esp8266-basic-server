@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boards</title>
+</head>
+<body>
+{~return html.nav~}
+<form action="/update_pin" method="post">
+    <label for="board">Choose a board:</label>
+    <select name="board" id="board">
+    {~return (function () local str = "" for k, v in pairs(app.boards) do str = str .. '<option value="' .. k .. '">' .. v.name .. '</option>' end return str end)()~}
+    </select><br>
+    <label id="up-pin-form" for="pin">Choose a pin:</label>
+    <select name="pin" id="pin">
+    {~return (function() local str = "" for k, v in pairs(utils.pinRef) do str = str .. '<option value="' .. v .. '">' .. v .. '</option>\n' end return str end)()~}
+    </select><br>
+    <label for="pinmode">Choose a pinmode:</label>
+    <select name="pinmode" id="pinmode" onchange="togglePinValue()">
+        <option value="INPUT">INPUT</option>
+        <option value="OUTPUT">OUTPUT</option>
+        <option value="OPENDRAIN">OPENDRAIN</option>
+        <option value="INT">INT</option>
+    </select><br>
+    <div id="pinvalue-container" style="display: none;">
+        <label for="pinvalue">Put the variable value:</label><br>
+        <input type="text" id="pinvalue" name="pinvalue" value="."><br>
+    </div>
+    <input type="submit" value="Submit">
+</form> 
+
+<script>
+    function togglePinValue() {
+        var pinmodeSelect = document.getElementById("pinmode");
+        var pinvalueContainer = document.getElementById("pinvalue-container");
+        var pinvalueInput = document.getElementById("pinvalue");
+
+        if (pinmodeSelect.value === "OUTPUT") {
+            pinvalueInput.disabled = false;
+            pinvalueContainer.style.display = "block";
+        } else {
+            pinvalueInput.disabled = true;
+            pinvalueContainer.style.display = "none";
+        }
+    }
+</script>
+</body>

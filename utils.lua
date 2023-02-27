@@ -7,6 +7,24 @@ local utils = {}
 > b()
 
 --]]
+utils.pinRef = {
+    "GPIO0",
+    "GPIO1",
+    "GPIO2",
+    "GPIO3",
+    "GPIO4",
+    "GPIO5",
+    "GPIO9",
+    "GPIO10",
+    "GPIO12",
+    "GPIO13",
+    "GPIO14",
+    "GPIO15",
+    "GPIO16",
+}
+
+
+
 function utils.newBoard(name)
     local board = {}
     board.name = name

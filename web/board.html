@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boards</title>
+</head>
+<body>
+    {~return html.nav~}
+<h1>{~return app.boards[app.slctd_bd].name~}</h1>
+<p>Board code: {~return app.slctd_bd~}</p>
+<h2>PIN status</h2>
+<ul>
+    {~return html.listBoardPINStatus(app.boards[app.slctd_bd])~}
+</ul>
+</body>
+</html>
